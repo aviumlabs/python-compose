@@ -1,0 +1,40 @@
+services:
+  app:
+    env_file: 
+      - path: .env
+        required: true
+    build: .
+    image: "aviumlabs/app:0.1.0"
+    volumes:
+      - ./src/app:${WORKINGDIR}/$APP_NAME
+      - ./dist:${WORKINGDIR}/dist
+      - ./tests:${WORKINGDIR}/tests
+    ports:
+      - "8080:8080"
+    working_dir: ${WORKINGDIR}/$APP_NAME
+    #secrets:
+    #  - appsecret 
+    #command: [ "python", "${WORKINGDIR}/$APP_NAME/app.py" ]
+    command: [ "python", "${WORKINGDIR}/$APP_NAME/server.py" ]
+  db:
+    env_file: 
+      - path: .env 
+        required: true
+    image: "postgres:17-alpine3.21"
+    restart: unless-stopped
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    secrets:
+      - postgres_password
+volumes:
+  db_data:
+secrets:
+  postgres_password:
+    file: ./.secret_db
+#  appsecret:
+#    file: ./.secret-app.json

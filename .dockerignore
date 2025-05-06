@@ -1,0 +1,25 @@
+# docker compose
+compose.yaml
+
+docs/*
+
+# environment file
+.env
+
+# Secets
+.secret*
+
+# Apple
+.DS_Store
+
+# git
+.gita
+
+# Visual Studio
+.coverage
+.coverage.*
+
+# Vim
+*.swp
+*.swo
+*.swn

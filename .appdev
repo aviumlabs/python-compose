@@ -1,0 +1,3 @@
+alias pip="docker compose exec app pip"
+alias python="docker compose exec -w /opt/aviumlabs app python"
+alias pytest="docker compose exec app pytest ../tests"
