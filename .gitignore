@@ -13,7 +13,6 @@ __pycache__/
 .secret*
 secrets*
 secrets/*
-.fuse.json
 
 # Local Packages 
 packages/
