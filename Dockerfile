@@ -1,14 +1,14 @@
 # syntax=docker/dockerfile:1
-FROM python:3.12-alpine3.21
+FROM python:3.13-alpine3.22
 
-ENV WORKDIR=/opt/aviumlabs/app
-ENV VIRTUAL_ENV=/opt/aviumlabs/venv
-ENV BUILD_ENV=/opt/aviumlabs
+ENV WORKDIR=/opt/python/app
+ENV VIRTUAL_ENV=/opt/python/venv
+ENV BUILD_ENV=/opt/python
 
 RUN set -eux; \
-   addgroup -g 935 -S aviumlabs; \
-   adduser -u 935 -S -D -G aviumlabs -H -h /opt/aviumlabs -s /bin/ash aviumlabs; \
-   install --verbose --directory --owner aviumlabs --group aviumlabs --mode 1755 /opt/aviumlabs
+   addgroup -g 935 -S python; \
+   adduser -u 935 -S -D -G python -H -h /opt/python -s /bin/ash python; \
+   install --verbose --directory --owner python --group python --mode 1755 /opt/python
    
 RUN apk add --no-cache \
    openssl \
@@ -20,7 +20,7 @@ RUN apk add --no-cache \
    inotify-tools \
    git
 
-USER aviumlabs
+USER python
 
 RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
