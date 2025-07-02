@@ -3,7 +3,7 @@
 This git repository is designed to be a "getting started" template.
 
 The rest of this document provides the details for using this template 
-to begin development of Python application or library.
+to begin development of a Python application or library.
 
 
 ## Design 
@@ -15,7 +15,7 @@ The project provides two different starting points for Python development:
 * app.py - when developing a Python application such as a web application
 * server.py - when developing a Python library 
 
-There are to supporting scripts that introduce `aliases` for running python 
+There are two supporting scripts that provide `aliases` for running python 
 commands in the docker container:  
 * .appdev - supports macOS and Linux  
 * .appdev.ps1 - supports Windows
@@ -46,6 +46,7 @@ and their dependencies:
 * pandas
 * pytest
 
+This file may be deleted and recreated with project specific requirements.  
 
 There are two methods for adding additional packages.
 
@@ -55,7 +56,6 @@ There are two methods for adding additional packages.
 **To install Python packages with pip:**
 * Modify `compose.yaml` to run server.py
 * Source the included .appdev file in a shell session
-  * Creates an alias to run pip inside the container
 * Run pip install <package>
 * Run pip freeze to export application requirements
 * Run docker compose build to rebuild the image
@@ -104,6 +104,8 @@ Modify the pyproject.toml file to meet your requirements.
 ```shell
 docker compose build
 ```
+
+Note: After adding new dependencies, rebuild the image.
 
 2. Run the Docker container in the foreground
 ```shell
